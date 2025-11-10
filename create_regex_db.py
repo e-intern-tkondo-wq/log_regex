@@ -10,6 +10,8 @@ def abstract_message(message: str) -> str:
     parts = []
     last_end = 0
     
+    #0xから始まる16進数をまず検索
+    #これをやらないと0xが\d+xのようになってしまう
     for match in re.finditer(r'0x[0-9A-Fa-f]+', message):
         # マッチ前の部分を処理
         if match.start() > last_end:
@@ -147,7 +149,7 @@ def main():
     args = parser.parse_args()
     
     db_path = "regex.sqlite3"
-    input_file = "/Users/user/home/test/regex_preprocess/sqlite_test/gpu001.log-20250714_messages.txt"
+    input_file = "/Users/user/home/test/regex_preprocess/sqlite_test/log_regex/gpu001.log-20250714_messages.txt"
     
     print(f"データベース作成: {db_path}")
     conn = sqlite3.connect(db_path)

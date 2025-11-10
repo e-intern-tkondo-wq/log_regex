@@ -1,3 +1,4 @@
+#SQliteに慣れるためのテスト用スクリプト
 import sqlite3
 
 db_path="test.db"
