@@ -14,11 +14,11 @@ def abstract_message(message: str) -> str:
         # マッチ前の部分を処理
         if match.start() > last_end:
             part = message[last_end:match.start()]
-            # 空白を処理
+            # 意図しない空白などのエスケープを防ぐためにプレースホルダーを使って置換
             part = re.sub(r'\s+', '___WS___', part)
-            # 数字を処理
+            # 意図しない数字のエスケープを防ぐためにプレースホルダーを使って置換
             part = re.sub(r'\d+', '___NUM___', part)
-            # エスケープ
+            # エスケープコマンドを使って特殊文字をエスケープ
             part = re.escape(part)
             # プレースホルダーを正規表現パターンに戻す
             part = part.replace('___WS___', r'\s+').replace('___NUM___', r'\d+')
